@@ -6,12 +6,18 @@ class Artist(models.Model):
     name = models.CharField(max_length=255, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self): 
+        return f'{self.name}'
 
 class Album(models.Model):
     title = models.CharField(max_length=255, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+
+    def __str__(self): 
+        return f'{self.title}'
 
 class MediaType(models.Model):
     name = models.CharField(max_length=255, null=False)
@@ -22,6 +28,9 @@ class Genre(models.Model):
     name = models.CharField(max_length=255, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.name}'
 
 class Track(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
@@ -35,6 +44,9 @@ class Track(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f'{self.name}'
+        
 class Playlist(models.Model):
     name = models.CharField(max_length=255, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
