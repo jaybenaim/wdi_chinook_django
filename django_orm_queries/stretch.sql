@@ -51,3 +51,4 @@ select * from chinook_playlist_tracks where playlist_id=1;
 | 3282 | 1             | 3496       |
 | 3281 | 1             | 3495       |
 SELECT 3285
+

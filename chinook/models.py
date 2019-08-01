@@ -23,11 +23,13 @@ class MediaType(models.Model):
     name = models.CharField(max_length=255, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    genres = models.ManyToManyField('Genre', through='Genre')
 
 class Genre(models.Model):
     name = models.CharField(max_length=255, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    # media_types = models.ForeignKey('MediaType', on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.name}'
@@ -40,7 +42,7 @@ class Track(models.Model):
     composer = models.CharField(max_length=255, null=True)
     milliseconds = models.IntegerField(null=False)
     bytes = models.IntegerField()
-    unit_price = models.DecimalField(decimal_places=2, max_digits=10)
+    unit_price = models.DecimalField(decimal_places=2, max_digits=10) 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -52,3 +54,5 @@ class Playlist(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     tracks = models.ManyToManyField(Track, related_name="playlists")
+
+
